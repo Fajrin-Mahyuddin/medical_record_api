@@ -1,14 +1,20 @@
-exports.createProduct = (req, res, next) => {
-  console.log("ini", req.body.baco);
+const ProductsModel = require("../models/products");
 
-  res.json({
-    message: "Sucess !",
-    data: {
-      id: 1,
-      nama: req.body.baco,
-    },
+exports.createProduct = (req, res, next) => {
+  const Post = new ProductsModel({
+    title: req.body.title,
+    body: req.body.body,
+    author: req.body.author,
   });
-  next();
+
+  Post.save()
+    .then((respon) => {
+      res.json({
+        message: "Sucess !",
+        data: respon,
+      });
+    })
+    .catch((err) => console.log("error ki waktu create", err));
 };
 
 exports.getProducts = (req, res, next) => {
