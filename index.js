@@ -1,12 +1,14 @@
+const express = require("express");
 const bodyParser = require("body-parser");
-const app = require("express").express();
 const mongoose = require("mongoose");
 const products = require("./src/routers/products");
-const { authRoute } = require("./src/routers/auth/authRoute");
+const usersRoute = require("./src/routers/users/usersRoute");
+const app = express();
 
 app.use(bodyParser.json());
 
-app.use("/", authRoute, products);
+app.use("/", usersRoute);
+app.use("/", products);
 
 mongoose
   .connect(
