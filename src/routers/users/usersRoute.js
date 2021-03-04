@@ -4,8 +4,9 @@ const {
   storeUser,
   getUser,
 } = require("../../controllers/users/usersContoller");
+const { authRoute } = require("../auth/authRoute");
 
-router.get("/user/list", getUser);
+router.get("/user/list", authRoute, getUser);
 router.post("/user/store", storeUser);
 
 module.exports = router;
