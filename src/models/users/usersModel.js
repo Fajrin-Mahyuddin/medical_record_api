@@ -14,7 +14,6 @@ const Users = new Schema({
   password: {
     type: String || Number,
     required: true,
-    select: false,
   },
 });
 
